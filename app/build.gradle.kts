@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.dagger.hilt.android)
+    alias(libs.plugins.devtools.ksp)
 }
 
 android {
@@ -56,4 +58,20 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    //hilt
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.android.compiler)
+    // if you use hiltViewModel()
+    implementation(libs.androidx.hilt.navigation.compose)
+
+    //custom libs
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.compose.shimmer)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.coil.compose)
+
+    //Retrofit
+    implementation (libs.retrofit)
+    implementation (libs.converter.gson)
 }
