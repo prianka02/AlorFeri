@@ -47,7 +47,7 @@ fun GetMobileNoView(
             value = mobileText, // Use the passed text value
             singleLine = true,
             onValueChange = { newMobileText ->
-                if (newMobileText.text.length <= 14) {
+                if (newMobileText.text.length <= 40) {
                     onTextChanged(newMobileText) // Only update the text if it's within the limit
                 }
             },
@@ -57,7 +57,7 @@ fun GetMobileNoView(
                 color = MaterialTheme.colorScheme.onSurface
             ),            cursorBrush = SolidColor(MaterialTheme.colorScheme.onSurface),
             keyboardOptions = KeyboardOptions.Default.copy(
-                keyboardType = KeyboardType.Phone,
+                keyboardType = KeyboardType.Text,
                 imeAction = ImeAction.Next
             ),
 

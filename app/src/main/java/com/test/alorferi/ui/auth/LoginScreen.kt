@@ -1,5 +1,7 @@
 package com.test.alorferi.ui.auth
 
+import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectTapGestures
@@ -25,12 +27,14 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -38,7 +42,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.test.alorferi.R
+import com.test.alorferi.routes.Screens
 import com.test.alorferi.ui.components.GetMobileNoView
 import com.test.alorferi.ui.components.GetPasswordView
 import com.test.alorferi.ui.theme.AlorFeriTheme
@@ -47,14 +54,24 @@ import com.test.alorferi.ui.theme.DeepRed700
 
 @Composable
 fun LoginScreen(
+    navController: NavController,
     viewModel: LoginViewModel = hiltViewModel()
 ){
+    val context = LocalContext.current
     val focusManager = LocalFocusManager.current
     val scrollState = rememberScrollState()
 
     val userMobileText by viewModel.userMobileText.collectAsState()
     val userPasswordText by viewModel.userPasswordText.collectAsState()
     val isLoading by viewModel.isLoading.collectAsState()
+    //val loginResponse by viewModel.loginResponse.collectAsState()
+
+//    LaunchedEffect(loginResponse) {
+//        if (loginResponse != null) {
+//            Log.d("response", loginResponse.toString())
+////            navigateToHome()
+//        }
+//    }
 
     Column(
         modifier = Modifier
@@ -95,14 +112,8 @@ fun LoginScreen(
                 .height(50.dp),
             mobileText = userMobileText,
             onTextChanged = { newMobileText -> viewModel.onPhoneNoChange(newMobileText) },
-            hint = "Mobile No"
+            hint = "Email or Mobile No"
         )
-//        OutlinedTextField(
-//            value = "",
-//            onValueChange = {},
-//            label = { Text("Email or Mobile") },
-//            modifier = Modifier.fillMaxWidth()
-//        )
 
         Spacer(modifier = Modifier.height(16.dp))
 
@@ -115,27 +126,15 @@ fun LoginScreen(
             onTextChanged = { newText -> viewModel.onPasswordChange(newText) },
             hint = "Password"
         )
-//        OutlinedTextField(
-//            value = "",
-//            onValueChange = {},
-//            label = { Text("Password") },
-//            trailingIcon = {
-//                IconButton(onClick = { /* Handle password visibility */ }) {
-//                    Icon(
-//                        painter = painterResource(R.drawable.ic_visibility),
-//                        contentDescription = "Toggle Password"
-//                    )
-//                }
-//            },
-//
-//            modifier = Modifier.fillMaxWidth()
-//        )
 
         Spacer(modifier = Modifier.height(16.dp))
 
         // Login Button
         Button(
-            onClick = { /* Handle Login */ },
+            onClick = {
+                viewModel.onCLickLogin(context)
+                navController.navigate(Screens.ProfileScreen)
+            },
             modifier = Modifier
                 .fillMaxWidth()
                 .height(48.dp),
@@ -157,7 +156,8 @@ fun LoginScreen(
 
         // Create New Account Button
         Button(
-            onClick = { /* Handle Create Account */ },
+            onClick = {
+            },
             modifier = Modifier
                 .fillMaxWidth()
                 .height(48.dp),
@@ -180,10 +180,4 @@ fun LoginScreen(
             color = Color.Gray
         )
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun LoginPreview() {
-    LoginScreen()
 }

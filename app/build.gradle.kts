@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.dagger.hilt.android)
     alias(libs.plugins.devtools.ksp)
+    kotlin("plugin.serialization") version "2.0.21"
 }
 
 android {
@@ -62,16 +63,19 @@ dependencies {
     //hilt
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
-    // if you use hiltViewModel()
     implementation(libs.androidx.hilt.navigation.compose)
 
-    //custom libs
     implementation(libs.androidx.navigation.compose)
     implementation(libs.compose.shimmer)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.coil.compose)
+    implementation(libs.kotlinx.serialization.json)
 
     //Retrofit
     implementation (libs.retrofit)
     implementation (libs.converter.gson)
+
+    // Datastore
+    implementation(libs.androidx.datastore.preferences)
+
 }
