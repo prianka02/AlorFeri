@@ -7,4 +7,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="ripple_effect_color">#80FFFFFF</color> <!-- Semi-transparent white ripple -->
+    <color name="primary">#6200EE</color> <!-- Primary button color -->
+    <color name="gray">#CCCCCC</color> <!-- Border color -->
 </resources>

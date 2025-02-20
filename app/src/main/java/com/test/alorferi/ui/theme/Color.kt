@@ -40,3 +40,16 @@ val DarkRed700 = Color(0xFF3B0000)
 val DarkRed800 = Color(0xFF2B0000)
 val DarkRed900 = Color(0xFF1C0000)
 
+val OrangePrimary = Color(0xFFE48400) // Original color
+val OrangeLight = Color(0xFFFFA733)  // Lighter shade
+val OrangeDark = Color(0xFFB35C00)   // Darker shade
+val OrangeTransparent = Color(0x80E48400) // Semi-transparent
+
+// Additional Shades:
+val OrangeLighter = Color(0xFFFFB84D)  // Lighter than OrangeLight
+val OrangeDarkest = Color(0xFF8A4F00)  // Darker than OrangeDark
+val OrangeMuted = Color(0xFFCC7A00)    // Muted orange
+val OrangeSoft = Color(0xFFFFD380)     // Soft, pastel shade
+val OrangeDeep = Color(0xFF804300)     // Deep orange with a rich tone
+
+
